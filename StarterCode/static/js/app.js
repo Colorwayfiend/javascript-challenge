@@ -1,24 +1,24 @@
 // Get a reference to the table body
 var tbody = d3.select("tbody");
 
-// Console.log the weather data from data.js
+// Console.log the data from data.js
 console.log(data);
 
-// // Step 1: Loop Through `data` and console.log each weather report object
+// Loop Through `data` and console.log each report object
 data.forEach(function (sightings) {
-    // console.log(weatherReport);
+
 });
 
-// // Step 2:  Use d3 to append one table row `tr` for each weather report object
+// Use d3 to append one table row `tr` for each report object
 // Don't worry about adding cells or text yet, just try appending the `tr` elements.
 data.forEach(function (sightings) {
-    console.log(sightings);
+    //console.log(sightings);
     var row = tbody.append("tr");
 });
 
-// // Step 3:  Use `Object.entries` to console.log each weather report value
+// Use `Object.entries` to console.log each report value
 data.forEach(function (sightings) {
-    console.log(sightings);
+    //console.log(sightings);
     var row = tbody.append("tr");
 
     Object.entries(sightings).forEach(function ([key, value]) {
@@ -26,20 +26,38 @@ data.forEach(function (sightings) {
     });
 });
 
-
-
-// Step 5: Use d3 to update each cell's text with
-// weather report values (weekday, date, high, low)
+// Use d3 to update each cell's text with report values 
 data.forEach(function (sightings) {
     console.log(sightings);
     var row = tbody.append("tr");
     Object.entries(sightings).forEach(function ([key, value]) {
         console.log(key, value);
         // Append a cell to the row for each value
-        // in the weather report object
+        // in the report object
         var cell = row.append("td");
         cell.text(value);
     });
 });
 
+// Submit Button handler
+function handleSubmit() {
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
 
+    // Use    
+    var button = d3.select("#filter-btn");
+    button.on("click", function () {
+        // Select the input element and get the raw HTML node
+        var inputElement = d3.select("#datetime");
+        // Get the value property of the input element. property will get the raw element values
+        var inputValue = inputElement.property("value");
+        console.log(inputValue);
+        console.log(data);
+
+        var filteredData = data.filter(data => data.datetime === inputValue);
+        // filteredData.forEach(function (sightings) {
+        //     var row = tbody.append("tr");
+        console.log(filteredData);
+
+    });
+};
